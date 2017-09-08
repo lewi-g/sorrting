@@ -8,8 +8,8 @@ function mergeSort(array) {
   const middle = Math.floor(array.length / 2);
   let left = array.slice(0, middle);
   let right = array.slice(middle, array.length);
-// console.log(left);
-// console.log(right);
+  // console.log(left);
+  // console.log(right);
   left = mergeSort(left);
   right = mergeSort(right);
   return merge(left, right, array);
@@ -19,9 +19,12 @@ function merge(left, right, array) {
   let leftIndex = 0;
   let rightIndex = 0;
   let outputIndex = 0;
+  console.log(array[outputIndex]);
   while (leftIndex < left.length && rightIndex < right.length) {
     if (left[leftIndex] < right[rightIndex]) { 
-      array[outputIndex++] = left[leftIndex++];// what is happening for the outputIndex++?
+      array[outputIndex++] = left[leftIndex++];
+      console.log(array[outputIndex]);
+      // what is happening for the outputIndex++?
       // array[outputIndex] = left[leftIndex];
       // outputIndex++;
       // leftIndex++;
@@ -38,7 +41,6 @@ function merge(left, right, array) {
   for (let i=rightIndex; i<right.length; i++) {
     array[outputIndex++] = right[i];
   }
-  // console.log(array);
   return array;
 }
 
@@ -65,16 +67,11 @@ function partition(array, start, end) {
     }
   }
   swap(array, end-1, j);
-        console.log(array);
+  console.log(array);
   return j;
 }
 
-function swap(array, i, j) {
-  const tmp = array[i];
-  array[i] = array[j];
-  array[j] = tmp;
-  // return array;
-}
+
 // console.log(partition([1,2,3,100,5,7],0,2));
 
 const left = [0, 5,4, 7, 8, 9,1,2,3,6,11, 12, 50];
@@ -83,34 +80,63 @@ const array = [];
 
 
 // Write an O(n) algorithm to sort an array of integers, where you know in advance what the lowest and highest values are.
-const arrayOfInt = [2, 4, 5, 3, 10]
+const arrayOfInt = [2, 4, 5, 3,6,8,19,100,78, 10];
+merge(left, arrayOfInt, []);
 
 function countingSort(arr, min, max) {
-    var i, z = 0, count = [];
-    
-    //tracks how many elements in original array
-    for (i = min; i <= max; i++) {
-        count[i] = 0;
+  var i, z = 0, count = [];
+  //tracks how many elements in original array
+  for (i = min; i <= max; i++) {
+    count[i] = 0;
+  }
+  //prepares count array
+  for (i=0; i < arr.length; i++) {
+    count[arr[i]]++;
+  }
+  //everything sorting is happening here
+  for (i = min; i <= max; i++) {
+    while (count[i]-- > 0) {
+      arr[z++] = i;
+      console.log(i);
     }
-
-    //prepares count array
-    for (i=0; i < arr.length; i++) {
-        count[arr[i]]++;
-    }
-     
-    //everything sorting is happening here
-    for (i = min; i <= max; i++) {
-        while (count[i]-- > 0) {
-            arr[z++] = i;
-            console.log(i)
-        }
-    }
-
-    console.log('result is....', arr);
+  }
+  return arr;
 }
 
-countingSort(arrayOfInt, 2, 10)
+// countingSort(arrayOfInt, 2, 10);
+// Write an algorithm to shuffle an array into a random order in-place 
+//(i.e. without creating a new array).
+function swap(array, i, j) {
+  const tmp = array[i];
+  array[i] = array[j];
+  array[j] = tmp;
+}
+const randomizeArray = arr => {
+  const randomIndex = Math.floor(Math.random()* arr.length);
+  let leftSideIndex = randomIndex;
+  let rightSideIndex = randomIndex;
+  
+  while (leftSideIndex >= 0 && rightSideIndex < arr.length ) {
+    swap(arr, leftSideIndex, rightSideIndex);
+    leftSideIndex--;
+    rightSideIndex++;
+  }
+  return (arr);
+}
+console.log(randomizeArray(arrayOfInt));
 
+function shuffle(arr) {
+  //Swap every element with a randomly-chosen one. On average, each
+  //element will be moved twice; every element will be moved at least
+  //once, but some will be moved three times or more.
+  for (var i = 0; i < arr.length; ++i) {
+    var j = Math.floor(Math.random() * arr.length);
+    swap(arr, i, j);
+    // var tmp = arr[i];
+    // arr[i] = arr[j];
+    // arr[j] = tmp;
+  }
+  return arr;
+}
 
-// Write an algorithm to shuffle an array into a random order in-place (i.e. without creating a new array).
 // Imagine that I gave you twenty books to sort in alphabetical order. How would you go about it? Can you express this as an algorithm?
