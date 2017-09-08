@@ -19,7 +19,7 @@ function merge(left, right, array) {
   let leftIndex = 0;
   let rightIndex = 0;
   let outputIndex = 0;
-  console.log(array[outputIndex]);
+//   console.log(array[outputIndex]);
   while (leftIndex < left.length && rightIndex < right.length) {
     if (left[leftIndex] < right[rightIndex]) { 
       array[outputIndex++] = left[leftIndex++];
@@ -81,7 +81,7 @@ const array = [];
 
 // Write an O(n) algorithm to sort an array of integers, where you know in advance what the lowest and highest values are.
 const arrayOfInt = [2, 4, 5, 3,6,8,19,100,78, 10];
-merge(left, arrayOfInt, []);
+// merge(left, arrayOfInt, []);
 
 function countingSort(arr, min, max) {
   var i, z = 0, count = [];
@@ -140,3 +140,33 @@ function shuffle(arr) {
 }
 
 // Imagine that I gave you twenty books to sort in alphabetical order. How would you go about it? Can you express this as an algorithm?
+const books = ['Atlas Shrugged', 'War and Peace', 'Art of War',
+'4 hour work week', 'the five dysfunctions of a team', 'Mistborn Trilogy', 'the Way of Kings', 
+'the last lecture', 'the emperor\'s soul', 'the last geisha', 'the jungle book', 'more than two', '4 hour cookbook', 'yoga for beginners'];
+
+// function sortByInsertion(arr) {
+//     1) Set aside a shelf or bit of table space to do the sorting.
+//     2) Grab a book and put it onto the shelf.
+//     3) Grab the next book, and place it either left or right of the first book, according to position.
+//     4) Grab the third, and put it left, between, or right.
+//     5) Continue until you have no more books.
+//     }
+
+function sortByInsertion(arr) {
+    const shelf = [];
+
+
+
+    shelf.push(arr[0])
+    
+    for(let i = 1, j =0; i < arr.length; i++) {
+        if(arr[i] < shelf[j]) {
+
+        } else {
+
+        }
+    }
+}
+
+
+console.log(mergeSort(books))
