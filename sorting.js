@@ -75,8 +75,42 @@ function swap(array, i, j) {
   array[j] = tmp;
   // return array;
 }
-console.log(partition([1,2,3,100,5,7],0,2));
+// console.log(partition([1,2,3,100,5,7],0,2));
 
-const left = [0, 5,4, 7, 8, 9,1,2,3,6];
+const left = [0, 5,4, 7, 8, 9,1,2,3,6,11, 12, 50];
 const array = [];
 // mergeSort(left);
+
+
+// Write an O(n) algorithm to sort an array of integers, where you know in advance what the lowest and highest values are.
+const arrayOfInt = [2, 4, 5, 3, 10]
+
+function countingSort(arr, min, max) {
+    var i, z = 0, count = [];
+    
+    //tracks how many elements in original array
+    for (i = min; i <= max; i++) {
+        count[i] = 0;
+    }
+
+    //prepares count array
+    for (i=0; i < arr.length; i++) {
+        count[arr[i]]++;
+    }
+     
+    //everything sorting is happening here
+    for (i = min; i <= max; i++) {
+        while (count[i]-- > 0) {
+            arr[z++] = i;
+            console.log(i)
+        }
+    }
+
+    console.log('result is....', arr);
+}
+
+countingSort(arrayOfInt, 2, 10)
+
+
+// Write an algorithm to shuffle an array into a random order in-place (i.e. without creating a new array).
+// Imagine that I gave you twenty books to sort in alphabetical order. How would you go about it? Can you express this as an algorithm?
